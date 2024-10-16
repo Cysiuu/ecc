@@ -71,7 +71,7 @@ public class CipherServiceImpl implements CipherService {
 
         messageToEncode.setEncodedText(new String(chars));
 
-        return messageToEncode.getEncodedText();
+        return new String(chars);
     }
 
     private char shiftChar(char c, int shift) {

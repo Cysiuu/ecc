@@ -10,4 +10,6 @@ public class CipherMessage {
         this.originalText = originalText;
         this.pattern = pattern;
     }
+
+    public CipherMessage(){};
 }
