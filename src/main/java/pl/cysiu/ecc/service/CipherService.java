@@ -1,5 +1,7 @@
 package pl.cysiu.ecc.service;
 
+import pl.cysiu.ecc.model.CipherMessage;
+
 public interface CipherService {
-    // TODO
+    public String encode(CipherMessage messageToEncode);
 }
