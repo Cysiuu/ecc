@@ -8,77 +8,86 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CipherServiceImpl implements CipherService {
+
+    private static class Range {
+        int from;
+        int to;
+
+        Range(int from, int to) {
+            this.from = from;
+            this.to = to;
+        }
+    }
+
     @Override
     public String encode(CipherMessage messageToEncode) {
+        validateMessage(messageToEncode);
 
-        if(messageToEncode.getOriginalText() == null ||
-        messageToEncode.getOriginalText().isEmpty() ){
-            throw new EmptyTextException("Message can't be empty");
-        }
-
-        // Pattern format should be like this one below
-        // %from%:%to%/%shift%; ...
-        // from can be declared as 's' (start) and to 'e' (end)
-        String pattern = messageToEncode
-                .getPattern()
-                .toLowerCase();
-
+        String pattern = messageToEncode.getPattern().toLowerCase();
         String messageOriginalText = messageToEncode.getOriginalText();
 
-        Map<int[], Integer> shifts = new HashMap<>();
+        Map<Range, Integer> shifts = parsePattern(pattern, messageOriginalText.length());
+
+        char[] chars = applyShifts(messageOriginalText.toCharArray(), shifts);
+
+        String encodedText = new String(chars);
+        messageToEncode.setEncodedText(encodedText);
+
+        return encodedText;
+    }
+
+    private void validateMessage(CipherMessage message) {
+        if (message.getOriginalText() == null || message.getOriginalText().isEmpty()) {
+            throw new EmptyTextException("Message can't be empty");
+        }
+    }
+
+    private Map<Range, Integer> parsePattern(String pattern, int messageLength) {
+        Map<Range, Integer> shifts = new HashMap<>();
         String[] patternSections = pattern.split(";");
 
         for (String section : patternSections) {
-
             String[] parts = section.split("/");
             String range = parts[0];
             int shift = Integer.parseInt(parts[1]);
 
-            String[] fromToParts = range.split(":");
-            int from, to;
+            Range fromToRange = parseRange(range, messageLength);
 
-            if (fromToParts[1].equals("e")) {
-                to = messageOriginalText.length() - 1;
-            } else {
-                to = Integer.parseInt(fromToParts[1]) - 1;
-            }
-
-            if (fromToParts[0].equals("s")) {
-                from = 0;
-            } else {
-                from = Integer.parseInt(fromToParts[0]) - 1;
-            }
-
-            if (from < 0 || to >= messageOriginalText.length() || from > to) {
-                throw new IllegalArgumentException("Invalid range in pattern: " + range);
-            }
-
-            shifts.put(new int[]{from, to}, shift);
-
+            shifts.put(fromToRange, shift);
         }
 
-        char[] chars = messageOriginalText.toCharArray();
+        return shifts;
+    }
 
-        for (Map.Entry<int[], Integer> entry : shifts.entrySet()) {
-            int[] range = entry.getKey();
+    private Range parseRange(String range, int messageLength) {
+        String[] fromToParts = range.split(":");
+        int from = fromToParts[0].equals("s") ? 0 : Integer.parseInt(fromToParts[0]) - 1;
+        int to = fromToParts[1].equals("e") ? messageLength - 1 : Integer.parseInt(fromToParts[1]) - 1;
+
+        if (from < 0 || to >= messageLength || from > to) {
+            throw new IllegalArgumentException("Invalid range in pattern: " + range);
+        }
+
+        return new Range(from, to);
+    }
+
+    private char[] applyShifts(char[] chars, Map<Range, Integer> shifts) {
+        for (Map.Entry<Range, Integer> entry : shifts.entrySet()) {
+            Range range = entry.getKey();
             int shift = entry.getValue();
 
-            for (int i = range[0]; i <= range[1] && i < chars.length; i++) {
+            for (int i = range.from; i <= range.to && i < chars.length; i++) {
                 chars[i] = shiftChar(chars[i], shift);
             }
-
         }
-
-        messageToEncode.setEncodedText(new String(chars));
-
-        return new String(chars);
+        return chars;
     }
 
     private char shiftChar(char c, int shift) {
         if (Character.isLetter(c)) {
             char base = Character.isLowerCase(c) ? 'a' : 'A';
             int alphabetSize = 26;
-            return (char) ((c - base + shift) % alphabetSize + base);
+            return (char) ((c - base + shift + alphabetSize) % alphabetSize + base);
         } else {
             return c;
         }
