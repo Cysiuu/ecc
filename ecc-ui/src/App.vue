@@ -8,6 +8,7 @@
       <v-main class="dotted-background">
         <main>
           <content-component/>
+          <bottom-bar-component/>
         </main>
       </v-main>
     </v-app>
@@ -25,12 +26,14 @@
 </style>
 
 <script>
-import ContentComponent from '@/components/ContentComponent.vue'
+import ContentComponent from '@/components/Content.vue'
+import BottomBarComponent from '@/components/BottomBar.vue'
 
 export default {
   name: 'App',
   components: {
-   ContentComponent
+    ContentComponent,
+    BottomBarComponent
   }
 }
 </script>
