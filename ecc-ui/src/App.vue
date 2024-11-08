@@ -7,9 +7,7 @@
     <v-app>
       <v-main>
         <main>
-          <v-container>
-            <v-btn color="primary">Vuetify is working!</v-btn>
-          </v-container>
+          <content-component/>
         </main>
       </v-main>
     </v-app>
@@ -18,3 +16,14 @@
 
 <style>
 </style>
+
+<script>
+import ContentComponent from '@/components/ContentComponent.vue'
+
+export default {
+  name: 'App',
+  components: {
+   ContentComponent
+  }
+}
+</script>
