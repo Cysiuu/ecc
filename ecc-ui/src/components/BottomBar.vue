@@ -35,6 +35,6 @@ function goToGitHub() {
 
 <style scoped>
 .icon-spacing {
-  margin: 0 8px; /* Adjust margin between icons */
+  margin: 0 8px;
 }
 </style>

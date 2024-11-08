@@ -1,7 +1,7 @@
 import { createApp } from 'vue';
 import router from './router';
 import axios from 'axios';
-import 'vuetify/styles'; // Import Vuetify styles
+import 'vuetify/styles';
 import { createVuetify } from 'vuetify';
 import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
@@ -13,7 +13,7 @@ const vuetify = createVuetify({
   components,
   directives,
   theme: {
-    defaultTheme: 'light',
+    defaultTheme: 'dark',
     themes: {
       light: {
         colors: {

@@ -19,13 +19,13 @@
           </v-card>
         </v-col>
 
-        <v-row class="mt-3 pa-0 d-flex justify-center align-center">
+        <v-row class="pa-2 d-flex justify-center align-center" style="margin: 0 auto;">
           <v-col
             cols="12"
-            sm="7"
-            md="7"
-            lg="7"
-            xl="7"
+            sm="8"
+            md="8"
+            lg="8"
+            xl="8"
             class="d-flex align-center"
           >
             <v-text-field
@@ -37,19 +37,20 @@
           </v-col>
           <v-col
             cols="12"
-            sm="5"
-            md="5"
-            lg="5"
-            xl="5"
-            class="d-flex align-center"
+            sm="4"
+            md="4"
+            lg="4"
+            xl="4"
+            class="d-flex align-center justify-center"
           >
             <v-btn
               color="secondary"
+              class="font-weight-600 custom-button"
+              rounded="lg"
               size="large"
-              class="font-weight-600 "
-              style="width: 100%"
+              style="min-width: 120px"
             >
-              Randomize Pattern
+              Randomize <br /> Pattern
             </v-btn>
           </v-col>
         </v-row>
@@ -73,24 +74,27 @@
         <v-btn
           color="secondary"
           size="x-large"
+          rounded="lg"
           class="font-weight-600"
         >
           GO
         </v-btn>
       </v-col>
     </v-form>
-
-
   </v-container>
 </template>
 
 <style scoped>
-
 .fill-height {
   min-height: 100vh;
 }
 
 .font-weight-600 {
   font-weight: 600;
+}
+
+.custom-button {
+  text-align: center;
+  line-height: 1.2;
 }
 </style>
