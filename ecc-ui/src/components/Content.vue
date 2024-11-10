@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import axios from "axios";
+import { randomizePattern } from '@/utils/patternGenerator';
 
 const cipher_text = ref("");
 const pattern = ref("");
@@ -18,6 +19,10 @@ const sendData = async () => {
   } catch (error) {
     console.error('Error sending data:', error);
   }
+};
+
+const generateRandomPattern = () => {
+  pattern.value = randomizePattern(cipher_text.value);
 };
 
 </script>
@@ -75,6 +80,7 @@ const sendData = async () => {
               rounded="lg"
               size="large"
               style="min-width: 120px"
+              @click="generateRandomPattern"
             >
               Randomize <br /> Pattern
             </v-btn>
