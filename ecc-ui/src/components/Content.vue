@@ -25,6 +25,10 @@ const generateRandomPattern = () => {
   pattern.value = randomizePattern(cipher_text.value);
 };
 
+const decode = () => {
+  pattern.value = pattern.value.replaceAll("/", "/-");
+};
+
 </script>
 
 <template>
@@ -62,29 +66,50 @@ const generateRandomPattern = () => {
               clearable
               label="Pattern"
               variant="solo"
-              class="mt-5"
+              class="mt-5 mr-5"
               v-model="pattern"
             ></v-text-field>
           </v-col>
-          <v-col
-            cols="12"
-            sm="4"
-            md="4"
-            lg="4"
-            xl="4"
-            class="d-flex align-center justify-center"
-          >
-            <v-btn
-              color="secondary"
-              class="font-weight-600 custom-button"
-              rounded="lg"
-              size="large"
-              style="min-width: 120px"
-              @click="generateRandomPattern"
+
+          <v-row>
+            <v-col
+              cols="12"
+              sm="6"
+              md="6"
+              lg="6"
+              xl="6"
+              class="d-flex align-center justify-center"
             >
-              Randomize <br /> Pattern
-            </v-btn>
-          </v-col>
+              <v-btn
+                color="secondary"
+                class="font-weight-600 custom-button"
+                rounded="lg"
+                size="large"
+                @click="generateRandomPattern"
+              >
+                Randomize <br /> Pattern
+              </v-btn>
+            </v-col>
+            <v-col
+              cols="12"
+              sm="6"
+              md="6"
+              lg="6"
+              xl="6"
+              class="d-flex align-center justify-center"
+            >
+              <v-btn
+                color="secondary"
+                class="font-weight-600 custom-button"
+                rounded="lg"
+                size="large"
+                @click="decode"
+              >
+                Decode
+              </v-btn>
+            </v-col>
+          </v-row>
+
         </v-row>
 
         <v-col cols="12" class="mt-3">
