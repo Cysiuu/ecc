@@ -1,5 +1,6 @@
 package pl.cysiu.ecc.service.impl;
 
+import org.springframework.stereotype.Service;
 import pl.cysiu.ecc.exceptions.EmptyTextException;
 import pl.cysiu.ecc.model.CipherMessage;
 import pl.cysiu.ecc.service.CipherService;
@@ -7,6 +8,7 @@ import pl.cysiu.ecc.service.CipherService;
 import java.util.HashMap;
 import java.util.Map;
 
+@Service
 public class CipherServiceImpl implements CipherService {
 
     private static class Range {
@@ -19,19 +21,20 @@ public class CipherServiceImpl implements CipherService {
         }
     }
 
-    @Override
-    public String encode(CipherMessage messageToEncode) {
-        validateMessage(messageToEncode);
 
-        String pattern = messageToEncode.getPattern().toLowerCase();
-        String messageOriginalText = messageToEncode.getOriginalText();
+    @Override
+    public String applyCipher(CipherMessage message) {
+        validateMessage(message);
+
+        String pattern = message.getPattern().toLowerCase();
+        String messageOriginalText = message.getOriginalText();
 
         Map<Range, Integer> shifts = parsePattern(pattern, messageOriginalText.length());
 
         char[] chars = applyShifts(messageOriginalText.toCharArray(), shifts);
 
         String encodedText = new String(chars);
-        messageToEncode.setEncodedText(encodedText);
+        message.setCipheredText(encodedText);
 
         return encodedText;
     }

@@ -1,5 +1,10 @@
 package pl.cysiu.ecc.dto;
 
+import lombok.Data;
+@Data
 public class CipherRequest {
-    // TODO
+
+    private String textToCipher;
+    private String pattern;
+
 }

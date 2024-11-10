@@ -1,3 +1,27 @@
+<script setup>
+import { ref } from "vue";
+import axios from "axios";
+
+const cipher_text = ref("");
+const pattern = ref("");
+const output = ref("");
+
+const sendData = async () => {
+  console.log("Sending data:", { textToCipher: cipher_text.value, pattern: pattern.value });
+  try {
+    const response = await axios.post('http://localhost:8080/api/cipher/encrypt', {
+      textToCipher:  cipher_text.value,
+      pattern: pattern.value
+    });
+    output.value = response.data.cipheredText;
+    console.log("Response received:", response.data);
+  } catch (error) {
+    console.error('Error sending data:', error);
+  }
+};
+
+</script>
+
 <template>
   <v-container class="fluid align-center justify-center fill-height">
     <v-form>
@@ -14,6 +38,7 @@
                 clearable
                 variant="outlined"
                 no-resize
+                v-model="cipher_text"
               ></v-textarea>
             </v-card-text>
           </v-card>
@@ -33,6 +58,7 @@
               label="Pattern"
               variant="solo"
               class="mt-5"
+              v-model="pattern"
             ></v-text-field>
           </v-col>
           <v-col
@@ -55,7 +81,6 @@
           </v-col>
         </v-row>
 
-
         <v-col cols="12" class="mt-3">
           <v-card>
             <v-card-title>Output</v-card-title>
@@ -64,6 +89,7 @@
                 readonly
                 variant="outlined"
                 no-resize
+                v-model="output"
               ></v-textarea>
             </v-card-text>
           </v-card>
@@ -76,6 +102,7 @@
           size="x-large"
           rounded="lg"
           class="font-weight-600"
+          @click="sendData"
         >
           GO
         </v-btn>
