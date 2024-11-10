@@ -19,13 +19,13 @@ const vuetify = createVuetify({
         colors: {
           primary: '#179299',
           secondary: '#ef6666',
-          background: '#ffffff',
-          surface: '#ffffff',
+          background: '#e1e1e3',
+          surface: '#ebebed',
           error: '#f38ba8',
           info: '#04a5e5',
           success: '#40a02b',
           warning: '#e5c890',
-          card: '#f4dbd6',
+          card: '#dcdcdc',
         },
       },
       dark: {
