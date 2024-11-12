@@ -6,17 +6,16 @@
 
   <v-col cols="12" md="5">
     <v-card outlined>
-      <v-card-title class="text-h4 font-weight-bold">How to Use</v-card-title>
+      <v-card-title class="text-h4 font-weight-bold">About</v-card-title>
       <v-divider thickness="3"></v-divider>
 
       <v-card-text>
         <div class="section">
-          <h5 class="text-h5 font-weight-bold">About</h5>
           <p>The Extended Caesar Cipher is a modified version of the classic Caesar cipher. Unlike the traditional cipher, which uses a single shift for all letters, this extended version allows you to specify different shifts for different parts of the text. This adds an extra layer of complexity and security, making it more versatile than the original Caesar cipher.</p>
         </div>
-
         <v-divider thickness="3"></v-divider>
-
+        <h5 class="text-h4 mb-4 mt-4 font-weight-bold">How to use</h5>
+        <v-divider thickness="3"></v-divider>
         <div class="section">
           <h5 class="text-h5 font-weight-bold">Step 1: Enter Text</h5>
           <p>Write the text you want to encode or decode in the first text box. This is the main content that will be processed.</p>

@@ -4,14 +4,15 @@ import axios from "axios";
 import {randomizePattern} from '@/utils/patternGenerator';
 import Docs from "@/components/Docs.vue";
 
+const baseURL = import.meta.env.VITE_BASE_URL;
+
 const cipher_text = ref("");
 const pattern = ref("");
 const output = ref("");
 
 const sendData = async () => {
-  console.log("Sending data:", {textToCipher: cipher_text.value, pattern: pattern.value});
   try {
-    const response = await axios.post('http://localhost:8080/api/cipher/encrypt', {
+    const response = await axios.post(`${baseURL}/api/cipher/encrypt`, {
       textToCipher: cipher_text.value,
       pattern: pattern.value
     });
