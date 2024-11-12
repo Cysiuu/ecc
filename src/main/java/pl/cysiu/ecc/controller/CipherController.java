@@ -10,7 +10,6 @@ import pl.cysiu.ecc.service.CipherService;
 
 @RestController
 @RequestMapping("/api/cipher")
-@CrossOrigin(origins = "http://localhost:5173")
 public class CipherController {
 
     private final CipherService cipherService;

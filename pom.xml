@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>pl.cysiu</groupId>
 	<artifactId>ecc</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>ecc</name>
 	<description>Extended version of one of the simplest and most widely known encryption techniques</description>
 	<url/>

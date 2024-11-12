@@ -57,9 +57,9 @@ public class CipherServiceImplEncodeTest {
 
     @Test
     public void testApplyCipher_singleCharShift(){
-        String textToEncode = "ab";
+        String textToEncode = "a";
         String pattern = "1:1/1;";  // Shift the only character by 1 position
-        String expected = "bc";
+        String expected = "b";
         CipherMessage cm = new CipherMessage(textToEncode, pattern);
 
         String result = cipherService.applyCipher(cm);
