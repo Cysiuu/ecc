@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: ./src/Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./src:/src
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+
+  frontend:
+    build:
+      context: ./ecc-ui
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./ecc-ui:/app
+    command: npm run dev
