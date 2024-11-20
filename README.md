@@ -16,6 +16,33 @@ See `contributing.md` for ways to get started.
 Please adhere to this project's `code of conduct`.
 
 
-## Appendix
+## Docker Run
 
-Future plans include adding Docker for simplified local development and testing
+The Extended Caesar Cipher project is containerized using Docker to simplify local development and testing. Follow the instructions below to build and run the project.
+
+### Prerequisites
+- Ensure [Docker](https://www.docker.com/get-started) and [Docker Compose](https://docs.docker.com/compose/) are installed on your machine.
+
+### Run the Application
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/Cysiuu/ecc.git
+    cd ecc
+    ```
+
+2. Start the services using Docker Compose:
+    ```bash
+    docker-compose up --build
+    ```
+
+3. Access the application:
+    - Frontend: [http://localhost:5173](http://localhost:5173)
+    - Backend: [http://localhost:8080](http://localhost:8080)
+
+### Stopping the Services
+To stop the services, press `Ctrl+C` in the terminal or run:
+```bash
+docker-compose down
+```
+
+---

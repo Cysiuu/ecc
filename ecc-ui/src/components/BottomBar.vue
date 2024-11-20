@@ -25,7 +25,7 @@ function goToGitHub() {
         text-color="white"
         small
       >
-        v1.0.0
+        v1.1.0
       </v-chip>
       <v-icon
         icon="mdi-moon-waning-crescent"
